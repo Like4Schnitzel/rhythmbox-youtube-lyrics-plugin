@@ -4,6 +4,8 @@ Depends on [ytmusicapi](https://github.com/sigma67/ytmusicapi).
 ## Installation instructions
 ### Debian:
 ```bash
+git clone https://github.com/Like4Schnitzel/rhythmbox-youtube-lyrics-plugin && \
+cd rhythmbox-youtube-lyrics-plugin && \
 # Install dependencies
 sudo apt install python3-pip python3-venv && \
 # Download ytmusicapi. There is currently no deb package so we need to do some hacky stuff.
