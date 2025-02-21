@@ -14,7 +14,8 @@ sudo apt install python3-pip python3-venv && \
 python3 -m venv .venv && \
 .venv/bin/pip install ytmusicapi && \
 
-# Great! We now have ytmusicapi downloaded in .venv/lib/ytmusicapi/ Now we move that whole module into the system's python3.* folder.
+# Great! We now have ytmusicapi downloaded in .venv/lib/ytmusicapi/
+# Now we move that whole module into the system's python3.* folder.
 sudo mv .venv/lib/python3.*/site-packages/ytmusicapi/ /usr/lib/python3.*/ && \
 
 # Test that the installation was successful.
@@ -28,7 +29,8 @@ sudo cp ./src/YTMusicLyricsParser.py /lib/x86_64-linux-gnu/rhythmbox/plugins/lyr
 
 # Create backup of parser index if it does not already exist
 (test -f /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py.bak || \
-sudo cp /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py.bak) && \
+sudo cp /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py \
+  /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py.bak) && \
 
 # Link the parser
 printf "\
@@ -56,7 +58,8 @@ sudo cp ./src/YTMusicLyricsParser.py /lib/rhythmbox/plugins/lyrics/ && \
 
 # Create backup of parser index if it does not already exist
 (test -f /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py.bak || \
-sudo cp /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py.bak) && \
+sudo cp /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py \
+  /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py.bak) && \
 
 # Link the parser
 printf "\
