@@ -57,9 +57,9 @@ sudo pacman -S python3 python-ytmusicapi && \
 sudo cp ./src/YTMusicLyricsParser.py /lib/rhythmbox/plugins/lyrics/ && \
 
 # Create backup of parser index if it does not already exist
-(test -f /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py.bak || \
-sudo cp /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py \
-  /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py.bak) && \
+(test -f /lib/rhythmbox/plugins/lyrics/LyricsSites.py.bak || \
+sudo cp /lib/rhythmbox/plugins/lyrics/LyricsSites.py \
+  /lib/rhythmbox/plugins/lyrics/LyricsSites.py.bak) && \
 
 # Link the parser
 printf "\
