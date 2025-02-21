@@ -26,8 +26,9 @@ rm -r .venv && \
 # Copy YTMusicLyricsParse.py to Rhythmbox' lyrics plugin folder.
 sudo cp ./src/YTMusicLyricsParser.py /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/ && \
 
-# Create backup of parser index
-sudo cp /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py.bak && \
+# Create backup of parser index if it does not already exist
+(test -f /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py.bak || \
+sudo cp /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py.bak) && \
 
 # Link the parser
 printf "\
@@ -38,7 +39,9 @@ with open(\"/lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py.bak\",
 \twith open(\"./.tmp\", \"w\") as out_file:\n\
 \t\tout_file.write(s)\n\
 " | python3 && \
-sudo mv .tmp /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py
+sudo mv .tmp /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py && \
+
+echo "Installation Successful!"
 ```
 ### Other Distros:
 Idk figure it out. You can submit a PR if you do. Good luck!
