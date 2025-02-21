@@ -43,5 +43,33 @@ sudo mv .tmp /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py && \
 
 echo "Installation Successful!"
 ```
+### Arch:
+```bash
+git clone https://github.com/Like4Schnitzel/rhythmbox-youtube-lyrics-plugin && \
+cd rhythmbox-youtube-lyrics-plugin && \
+
+# Install dependencies
+sudo pacman -S python3 python-ytmusicapi && \
+
+# Copy YTMusicLyricsParse.py to Rhythmbox' lyrics plugin folder.
+sudo cp ./src/YTMusicLyricsParser.py /lib/rhythmbox/plugins/lyrics/ && \
+
+# Create backup of parser index if it does not already exist
+(test -f /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py.bak || \
+sudo cp /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py /lib/x86_64-linux-gnu/rhythmbox/plugins/lyrics/LyricsSites.py.bak) && \
+
+# Link the parser
+printf "\
+with open(\"/lib/rhythmbox/plugins/lyrics/LyricsSites.py.bak\", 'r') as file:\n\
+\tlines = file.readlines()\n\
+\tlines_string = ''.join(lines)\n\
+\ts = lines_string.replace(\"import JetlyricsParser\", \"import JetlyricsParser\\\nfrom YTMusicLyricsParser import YTMusicLyricsParser\").replace(\"}\\\n]\", \"},\\\n\\\t{ 'id': 'music.youtube.com','class': YTMusicLyricsParser,'name':_('YouTube Music (music.youtube.com)') }\\\n]\")\n\
+\twith open(\"./.tmp\", \"w\") as out_file:\n\
+\t\tout_file.write(s)\n\
+" | python3 && \
+sudo mv .tmp /lib/rhythmbox/plugins/lyrics/LyricsSites.py && \
+
+echo "Installation Successful!"
+```
 ### Other Distros:
 Idk figure it out. You can submit a PR if you do. Good luck!
